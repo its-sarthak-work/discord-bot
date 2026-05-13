@@ -7,8 +7,10 @@ const client = new Client({
   ]
 });
 
-const ROLE_ID = "1503623505533468692";
-
+const ROLE_IDS = [
+  "1503623505533468692",
+  "1503623623636684893"
+];
 client.on("guildMemberAdd", async (member) => {
   console.log(`${member.user.tag} joined`);
 
@@ -16,7 +18,7 @@ client.on("guildMemberAdd", async (member) => {
     console.log("Bot detected");
 
     try {
-      await member.roles.add(ROLE_ID);
+      await member.roles.add(ROLE_IDS);
       console.log(`Role added to ${member.user.tag}`);
     } catch (err) {
       console.error("ERROR:", err);
