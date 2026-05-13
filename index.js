@@ -1,14 +1,16 @@
 const express = require("express");
 const app = express();
 
+const PORT = process.env.PORT || 3000;
+
 app.get("/", (req, res) => {
   res.send("Bot is alive!");
 });
-const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
   console.log(`Web server running on port ${PORT}`);
 });
+
 const { Client, GatewayIntentBits } = require("discord.js");
 
 const client = new Client({
@@ -22,6 +24,7 @@ const ROLE_IDS = [
   "1503623505533468692",
   "1503623623636684893"
 ];
+
 client.on("guildMemberAdd", async (member) => {
   console.log(`${member.user.tag} joined`);
 
@@ -30,7 +33,7 @@ client.on("guildMemberAdd", async (member) => {
 
     try {
       await member.roles.add(ROLE_IDS);
-      console.log(`Role added to ${member.user.tag}`);
+      console.log(`Roles added to ${member.user.tag}`);
     } catch (err) {
       console.error("ERROR:", err);
     }
